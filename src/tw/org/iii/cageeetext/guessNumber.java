@@ -1,4 +1,4 @@
-package boon;
+package tw.org.iii.cageeetext;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -12,104 +12,92 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class guessNumber extends JFrame {
+public class guessNumber extends JFrame{
 	private JButton guess;
 	private JTextField input;
 	private JTextArea hist;
 	private String answer = createAnswer();
 	private int counter;
-	public guessNumber() {
-		setTitle("猜字遊戲");
+	
+ 	public guessNumber() {
+		setTitle("猜數字遊戲");
 		guess = new JButton("猜");
 		input = new JTextField();
 		hist = new JTextArea();
 		input.setFont(new Font("Defult",Font.BOLD,24));
-		hist.setFont(new Font("Defult",Font.BOLD,24));
+		hist.setFont(new Font("Defult",Font.BOLD+Font.ITALIC,24));
 		
 		setLayout(new BorderLayout());
 		add(hist,BorderLayout.CENTER);
+		
 		JPanel top = new JPanel(new BorderLayout());
 		top.add(guess,BorderLayout.EAST);
 		top.add(input,BorderLayout.CENTER);
+		
 		add(top,BorderLayout.NORTH);
+		
 		guess.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				doGuess();
-				input.requestFocus();
 			}
 		});
-		setSize(640,480);
-		setVisible(true);
-		System.out.println(answer);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		input.requestFocus();
 		
+		setSize(640, 480);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		System.out.println(answer);
 	}
+	//homework01 游標自動移到輸入欄
+ 	//homework02 檢查是否為三個數字
+ 	//homework03 第十次有兩個結果 猜對或沒猜對 開新局
 	void doGuess(){
 		counter++;
-		String result = checkAB();
-		if(checknumber(input.getText()) == true) {
+		String result=checkAB();
 		hist.append(counter+"."+input.getText()+"=>"+result+"\n");
-		}else {
-			hist.append(counter+". "+input.getText()+"=>"+"What did you say \n");
-		}
 		input.setText("");
 		if(result.equals("3A0B")) {
 			JOptionPane.showMessageDialog(this,"congrauation");
-		}else if(counter==10){
-			JOptionPane.showMessageDialog(this,"suck! answer is => "+answer);
+		}else if(counter==10) {
+			JOptionPane.showMessageDialog(this,"loser answer is ="+answer);
 		}
 	}
-	boolean checknumber(String number) {
-		boolean match=false;
-		if(number.matches("^[0-9]{3}$")) {
-			for(int i=0;i<2;i++) {
-				for(int j=0;j<2;j++) {
-					do {
-						
-					}while(String.valueOf(number).charAt(i) == String.valueOf(number).charAt(j));
-				}
-			}
-			match=true;
-		}
-		return match;
-	}
-	String checkAB(){
+	String checkAB() {
 		int a,b;
 		a=b=0;
 		String inputGuess = input.getText();
-		for(int i = 0; i<inputGuess.length(); i++) {
+		for(int i=0;i<inputGuess.length();i++) {
 			if(inputGuess.charAt(i) == answer.charAt(i)) {
 				a++;
-			}else if(answer.indexOf(inputGuess.charAt(i))!=-1) {
+			}else if(answer.indexOf(inputGuess.charAt(i)) !=-1){
 				b++;
 			}
 		}
-		
 		return a+"A"+b+"B";
 	}
-	String createAnswer() {
-		int[] eichanswer = new int[3];
+	String createAnswer(){
+		int[] poker = new int [10];
 		boolean isRepeat = false;
 		int temp;
-		for(int i=0;i<eichanswer.length;i++) {
+		for(int i=0;i<poker.length;i++) {
 			do {
-				temp = (int)(Math.random()*10);
-				isRepeat = false;
-				for(int j=0;j<i;j++) {
-					if(eichanswer[j]==temp) {
-						isRepeat = true;
-						break;
-					}
+			temp = (int)(Math.random()*10);
+			//檢查機制
+			isRepeat = false;
+			for(int j=0;j<i;j++) {
+				if(poker[j]==temp) {
+					isRepeat = true;
+					break;
 				}
+			}
 			}while(isRepeat);
-			eichanswer[i]=temp;
+			poker[i] = temp;
 		}
-		return ""+eichanswer[0]+eichanswer[1]+eichanswer[2];
+		return ""+poker[0]+poker[1]+poker[2];
 	}
-	public static void main(String[] args) {
+ 	public static void main(String[] args) {
 		new guessNumber();
 	}
+
 }
