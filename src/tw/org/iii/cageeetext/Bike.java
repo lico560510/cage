@@ -1,7 +1,12 @@
 package tw.org.iii.cageeetext; //路徑
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 //import
 //只有一個public類別
-public class Bike { 
+public class Bike implements Serializable{ 
 	//Bike has a 屬性 Field 靜態的物件 例如尺寸 速度
 	//Bike has a 方法 Method 動態物件 例如吃飯
 	//方法不重要 重要的是方法 方法搭配屬性

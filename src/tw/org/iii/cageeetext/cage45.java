@@ -6,7 +6,7 @@ import java.io.IOException;
 public class cage45 {
 
 	public static void main(String[] args) {
-		File f1 = new File("dir1");
+		File f1 = new File("dir1");//看成檔案總管
 		File f2 = new File("dir2"); //物件一樣會做出來 但不一定會存在列表
 		File f3 = new File("dir3/dir4/dir5/dir6");
 		File f4 = new File("dir3/dir4/dir5/dir6/file1");

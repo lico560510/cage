@@ -38,10 +38,11 @@ public class TWId {//類別
 	private TWId(String id) {
 		this.id = id;
 	}
-	static TWId createTWId(String id) {
+	static TWId createTWId(String id) {// throws Exception
 		if(checkId(id)) {
 			return new TWId(id);
 		}else {
+			//throw new Exception();
 			return null;
 		}
 	}

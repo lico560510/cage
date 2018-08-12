@@ -21,6 +21,8 @@ public class cage02 {
 		System.out.println(b5);
 		//b5=b5+1;
 		
+		int v1 = (int)50000000000L;
+		System.out.println(v1);
 	}
 
 }
