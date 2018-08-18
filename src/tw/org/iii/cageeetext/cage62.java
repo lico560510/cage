@@ -20,8 +20,8 @@ public class cage62 {
 			
 			int len;String line;
 //			while((line = br.readLine()) =! null){
-//				System.out.print(line);
-//			}
+//			System.out.print(line);
+//		}
 			server.close();
 			System.out.println("OK");
 		} catch (IOException e) {
