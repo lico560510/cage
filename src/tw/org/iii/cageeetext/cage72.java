@@ -2,7 +2,7 @@ package tw.org.iii.cageeetext;
 
 import java.util.LinkedList;
 
-public class class72 {
+public class cage72 {
 
 	public static void main(String[] args) {
 		LinkedList<String> names = new LinkedList<>();
